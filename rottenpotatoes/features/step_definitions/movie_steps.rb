@@ -4,8 +4,9 @@ Given /the following movies exist/ do |movies_table|
   movies_table.hashes.each do |movie|
     # each returned element will be a hash whose key is the table header.
     # you should arrange to add that movie to the database here.
+    Movie.create!(:title => movie[:title], :rating => movie[:rating], :release_date => movie[:release_date])
   end
-  fail "Unimplemented"
+  # fail "Unimplemented"
 end
 
 Then /(.*) seed movies should exist/ do | n_seeds |
@@ -35,4 +36,12 @@ end
 Then /I should see all the movies/ do
   # Make sure that all the movies in the app are visible in the table
   fail "Unimplemented"
+end
+
+Then /These movies are visible - (.*)/ do |movie_list|
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+Then /These movies are not visible - (.*)/ do |movie_list|
+  pending # Write code here that turns the phrase above into concrete actions
 end
