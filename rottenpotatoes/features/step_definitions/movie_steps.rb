@@ -19,7 +19,8 @@ end
 Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   #  ensure that that e1 occurs before e2.
   #  page.body is the entire content of the page as a string.
-  fail "Unimplemented"
+  # fail "Unimplemented"
+  page.body.should =~ /#{e1}.*#{e2}/m
 end
 
 # Make it easier to express checking or unchecking several boxes at once
@@ -61,5 +62,18 @@ Then /These movies are not visible - (.*)/ do |movie_list|
   movies = movie_list.split(', ')
   for movie in movies
     step "I should not see " + movie
+  end
+end
+
+Then /I should see order (.*)/ do |movie_list|
+  # pending # Write code here that turns the phrase above into concrete actions
+  movies = movie_list.split(', ')
+  # for movie in movies
+  #   step "I should not see " + movie
+  # end
+  
+  0.upto(movies.length()-2) do |i|
+    # log(movies[i])
+    step "I should see " + movies[i] + " before " + movies[i+1] 
   end
 end
